@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Level Detection System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGO -->
+<img src="assets/srm-logo.png" class="logo">
+
+<!-- HERO -->
+<section class="panel hero">
+  <div class="hero-content">
+    <h1>
+      Smart <span>Water Level</span><br>
+      Detection System
+    </h1>
+
+    <p class="subtitle">
+      An IoT-based solution for efficient water monitoring and management.
+      Designed to prevent overflow and improve water usage efficiency.
+    </p>
+
+    <p class="college">
+      SRM Institute of Science and Technology
+    </p>
+
+    <p class="group">
+      Group Members: R Rehan, Rishav Raj, S.L Ramkishore,  
+      Tamilselvan T, U Goutham, M. Kethana, Divya Daksh
+    </p>
+  </div>
+
+  <div class="hero-img-box">
+    <img src="assets/installation.png" class="hero-image">
+  </div>
+</section>
+
+<!-- BASIC IDEA -->
+<section class="panel">
+  <h2>Basic Working Principle</h2>
+  <img src="assets/raw-diagram.png" class="image">
+  <p>
+    The system works based on electrical conductivity of water.
+    When water touches different probes placed at various heights,
+    it completes the circuit and allows current to flow.
+  </p>
+  <p>
+    This triggers LEDs that indicate the level of water inside the tank,
+    helping users monitor water levels easily without manual checking.
+  </p>
+</section>
+
+<!-- CIRCUIT -->
+<section class="panel">
+  <h2>Actual Circuit Implementation</h2>
+  <img src="assets/circuit.png" class="image">
+  <p>
+    The circuit uses a microcontroller (ESP8266/Arduino) connected to probes.
+    Each probe corresponds to a specific water level.
+  </p>
+  <p>
+    When water reaches a probe, the signal is sent to the controller,
+    which activates LEDs indicating low, medium, or high levels.
+  </p>
+</section>
+
+<!-- COMPONENTS -->
+<section class="panel">
+  <h2>Components Used</h2>
+  <p><b>Microcontroller:</b> Processes signals and controls output</p>
+  <p><b>Water Probes:</b> Detect water levels using conductivity</p>
+  <p><b>LED Indicators:</b> Display level visually</p>
+  <p><b>Resistors:</b> Regulate current flow</p>
+  <p><b>Power Supply:</b> Provides required voltage</p>
+  <p><b>Wires:</b> Connect all components</p>
+</section>
+
+<!-- IMPROVEMENTS -->
+<section class="panel">
+  <h2>Future Enhancements</h2>
+  <img src="assets/advanced.png" class="image">
+  <p>
+    This system can be upgraded into a smart IoT system with:
+  </p>
+  <p>
+    • Digital water level display  
+    • Automatic motor ON/OFF  
+    • Buzzer alert for overflow  
+    • Mobile app monitoring  
+    • Cloud-based data tracking  
+  </p>
+</section>
+<!-- INTERACTIVE DEMO -->
+<section class="panel">
+  <h2>Interactive Water Level Demo</h2>
+
+  <div class="tank-container">
+    
+    <!-- LEDs -->
+    <div class="leds">
+      <div class="led" id="led1"></div>
+      <div class="led" id="led2"></div>
+      <div class="led" id="led3"></div>
+      <div class="led" id="led4"></div>
+    </div>
+
+    <!-- TANK -->
+    <div class="tank">
+      <div class="water" id="water"></div>
+    </div>
+
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="controls">
+    <button onclick="fillWater()">Fill Water</button>
+    <button onclick="resetWater()">Reset</button>
+  </div>
+
+</section>
+<!-- THANK YOU -->
+<section class="panel">
+  <h1>Thank You</h1>
+
+  <p><b>Group Members:</b></p>
+  <p>
+    RA2511003010536 - R Rehan<br>
+    RA2511003010537 - Rishav Raj<br>
+    RA2511003010538 - S.L Ramkishore<br>
+    RA2511003010539 - Tamilselvan T<br>
+    RA2511003010540 - U Goutham<br>
+    RA2511003010541 - M. Kethana<br>
+    RA2511003010542 - Divya Daksh
+  </p>
+
+  <p>SRM Institute of Science and Technology</p>
+</section>
+<div id="alertBox" class="alert-box">
+  ⚠️ Water Tank Full! Overflow Risk!
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

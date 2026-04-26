@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  scroll-behavior: smooth;
+  background: #050816;
+  overflow-x: hidden;
+}
+
+/* LOGO */
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 70px;
+  z-index: 1000;
+}
+
+/* PANELS */
+.panel {
+  min-height: 100vh;
+  padding: 60px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.8s;
+  opacity: 0.5;
+  transform: translateY(40px);
+}
+
+.panel.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TEXT */
+h1 {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+
+p {
+  width: 60%;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 10px 0;
+  color: #e5e7eb;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px;
+  flex-wrap: wrap;
+}
+
+.hero h1 {
+  font-size: 5rem;
+}
+
+/* REMOVE PURPLE, KEEP WHITE GLOW */
+.hero h1 span {
+  color: white;
+  text-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.subtitle {
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.group {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* IMAGE */
+.image {
+  width: 350px;
+  max-width: 90%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.hero-image {
+  width: 420px;
+  border-radius: 15px;
+
+  /* Keep neon effect but neutral color */
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    width: 90%;
+  }
+}
+/* TANK */
+.tank-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.tank {
+  width: 120px;
+  height: 300px;
+  border: 3px solid white;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.water {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: #38bdf8;
+  transition: height 1s ease;
+}
+
+/* LEDS */
+.leds {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/* LED BASE */
+.led {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #222;
+  box-shadow: 0 0 5px #000;
+  transition: 0.3s;
+}
+
+/* INDIVIDUAL COLORS */
+#led1.active {
+  background: lime;
+  box-shadow: 0 0 15px lime;
+}
+
+#led2.active {
+  background: yellow;
+  box-shadow: 0 0 15px yellow;
+}
+
+#led3.active {
+  background: orange;
+  box-shadow: 0 0 15px orange;
+}
+
+#led4.active {
+  background: red;
+  box-shadow: 0 0 20px red;
+}
+/* BUTTONS */
+.controls {
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ddd;
+}
+.alert-box {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  box-shadow: 0 0 20px red;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
