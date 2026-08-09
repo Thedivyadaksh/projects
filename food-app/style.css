@@ -1,0 +1,53 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+button {
+    padding: 10px 15px;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ff3b3b;
+}
+
+#status {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.progress-container {
+    width: 300px;
+    height: 18px;
+    background: #333;
+    margin: 15px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 1.5s linear;
+}

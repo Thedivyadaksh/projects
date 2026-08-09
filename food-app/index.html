@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food App</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+.box {
+    background: #111;
+    padding: 20px;
+    margin: 20px auto;
+    width: 340px;
+    border-radius: 12px;
+}
+
+button {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid white;
+    background: black;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button:hover {
+    background: white;
+    color: black;
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+.cart-item {
+    border-bottom: 1px solid #444;
+    padding: 8px;
+}
+
+.qty-btn {
+    padding: 3px 8px;
+    margin: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍔 Food App</h1>
+
+<!-- LOGIN -->
+<div id="login" class="box">
+    <h2>Login</h2>
+    <input type="text" id="phone" placeholder="Enter phone number">
+    <br>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+
+<div class="box">
+    <h2>Restaurants</h2>
+    <button onclick="showMenu('pizza')">Pizza Hut</button>
+    <button onclick="showMenu('burger')">Burger King</button>
+    <button onclick="showMenu('taco')">Taco Bell</button>
+</div>
+
+<div id="menu" class="box" style="display:none;"></div>
+
+<div class="box">
+    <h2>🛒 Cart</h2>
+    <div id="cart"></div>
+    <h3 id="total">Total: ₹0</h3>
+    <button onclick="goToPayment()">Checkout</button>
+</div>
+
+<div id="payment" class="box" style="display:none;">
+    <h2>Payment</h2>
+    <button onclick="placeOrder()">Pay Now</button>
+</div>
+
+<div class="box">
+    <h2>📜 Order History</h2>
+    <div id="history"></div>
+</div>
+
+<h2 id="status"></h2>
+
+<div class="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
+</div>
+
+<script>
+let cart = {};
+let history = [];
+
+/* SAVE LOGIN */
+window.onload = function() {
+    let saved = localStorage.getItem("user");
+    if (saved) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("app").style.display = "block";
+    }
+}
+
+/* LOGIN */
+function login() {
+    let phone = document.getElementById("phone").value;
+
+    if (phone.length < 5) {
+        alert("Enter valid number");
+        return;
+    }
+
+    localStorage.setItem("user", phone);
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+}
+
+/* MENU */
+function showMenu(type) {
+    let menu = document.getElementById("menu");
+    menu.style.display = "block";
+
+    if (type === "pizza") {
+        menu.innerHTML = `
+            <h3>Pizza Hut</h3>
+            <p>🍕 Pizza - ₹200 <button onclick="addToCart('Pizza',200)">Add</button></p>
+        `;
+    }
+
+    if (type === "burger") {
+        menu.innerHTML = `
+            <h3>Burger King</h3>
+            <p>🍔 Burger - ₹150 <button onclick="addToCart('Burger',150)">Add</button></p>
+        `;
+    }
+
+    if (type === "taco") {
+        menu.innerHTML = `
+            <h3>Taco Bell</h3>
+            <p>🌮 Taco - ₹120 <button onclick="addToCart('Taco',120)">Add</button></p>
+        `;
+    }
+}
+
+/* CART */
+function addToCart(item, price) {
+    if (!cart[item]) {
+        cart[item] = {price: price, qty: 1};
+    } else {
+        cart[item].qty++;
+    }
+    updateCart();
+}
+
+function changeQty(item, change) {
+    cart[item].qty += change;
+
+    if (cart[item].qty <= 0) {
+        delete cart[item];
+    }
+    updateCart();
+}
+
+function updateCart() {
+    let cartDiv = document.getElementById("cart");
+    let total = 0;
+
+    cartDiv.innerHTML = "";
+
+    for (let item in cart) {
+        let data = cart[item];
+        total += data.price * data.qty;
+
+        cartDiv.innerHTML += `
+            <div class="cart-item">
+                ${item} - ₹${data.price} x ${data.qty}
+                <button class="qty-btn" onclick="changeQty('${item}',1)">+</button>
+                <button class="qty-btn" onclick="changeQty('${item}',-1)">-</button>
+            </div>
+        `;
+    }
+
+    document.getElementById("total").innerHTML = "Total: ₹" + total;
+}
+
+/* PAYMENT */
+function goToPayment() {
+    if (Object.keys(cart).length === 0) {
+        alert("Cart is empty");
+        return;
+    }
+    document.getElementById("payment").style.display = "block";
+}
+
+/* ORDER */
+function placeOrder() {
+    let s = document.getElementById("status");
+
+    s.innerHTML = "Order Placed ✅";
+
+    setTimeout(() => {
+        s.innerHTML = "Preparing 👨‍🍳";
+    }, 2000);
+
+    setTimeout(() => {
+        s.innerHTML = "Out for Delivery 🚚";
+    }, 4000);
+
+    setTimeout(() => {
+        s.innerHTML = "Delivered 🎉";
+    }, 6000);
+
+    history.push(JSON.stringify(cart));
+    updateHistory();
+
+    cart = {};
+    updateCart();
+}
+
+/* HISTORY */
+function updateHistory() {
+    let h = document.getElementById("history");
+    h.innerHTML = "";
+
+    history.forEach((order, index) => {
+        h.innerHTML += `<p>Order ${index+1}: ${order}</p>`;
+    });
+}
+</script>
+
+</body>
+</html>
